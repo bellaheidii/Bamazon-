@@ -36,3 +36,37 @@ function loadProducts(){
         promptCustomeForItem(res);
     });
 }
+
+//prompt cuustomer for product ID 
+function promptCustomerForItem(inventory) {
+    //promts user for desired purchase 
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "choice",
+            message: "What is the ID of the item you would you like to purchase? [Quit with Q]",
+            validate: function(val) {
+              return !isNaN(val) || val.toLowerCase() === "q";
+    
+        }
+    }
+    ])
+    .thene(function(val) {
+        //ask user if they want to quit
+        checkIfShouldExit(val.choice);
+        var choiceId = parseInt(val.choice);
+        var product = checkInventory(choiceId, inventory);
+
+        //if product has ID, prompt user for desired quantity 
+        if(product) {
+            promptCustomerForQuantity(product);
+        }
+        else {
+            //otherwise alert user item is no longer available, re-run products
+            console.log("\nThat item is not in the inventory.");
+            loadProducts();
+    
+        }
+    });
+}
