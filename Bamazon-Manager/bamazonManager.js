@@ -24,3 +24,14 @@ connection.connect(function(err) {
   }
   loadManagerMenu();
 });
+// Get product data from the database
+function loadManagerMenu() {
+    connection.query("SELECT * FROM products", function(err, res) {
+      if (err) throw err;
+  
+      // Load the possible manager menu options, pass in the products data
+      loadManagerOptions(res);
+    });
+  }
+  
+  
