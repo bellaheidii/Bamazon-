@@ -33,5 +33,51 @@ function loadManagerMenu() {
       loadManagerOptions(res);
     });
   }
+  // Load the manager options and pass in the products data from the database
+function loadManagerOptions(products) {
+    inquirer
+      .prompt({
+        type: "list",
+        name: "choice",
+        choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product", "Quit"],
+        message: "What would you like to do?"
+      })
+      .then(function(val) {
+        switch (val.choice) {
+        case "View Products for Sale":
+          console.table(products);
+          loadManagerMenu();
+          break;
+          case "View Low Inventory":
+          loadLowInventory();
+          break;
+          case "Add to Inventory":
+          addToInventory(products);
+          break;
+        case "Add New Product":
+          promptManagerForNewProduct(products);
+          break;
+        default:
+          console.log("bye!");
+          process.exit(0);
+          break;
+        }
+      });
+  }
+  // Query the DB for low inventory products
+function loadLowInventory() {
+    // Selects all of the products that have a quantity of 5 or less
+    connection.query("SELECT * FROM products WHERE stock_quantity <= 5", function(err, res) {
+      if (err) throw err;
+      // Draw the table in the terminal using the response, load the manager menu
+      console.table(res);
+      loadManagerMenu();
+    });
+  }
+  
+  
+  
+  
+  
   
   
