@@ -193,6 +193,19 @@ function getDepartments(products) {
     }
     return departments;
   }
+
+// Check to see if the product the user chose exists in the inventory
+function checkInventory(choiceId, inventory) {
+    for (var i = 0; i < inventory.length; i++) {
+      if (inventory[i].item_id === choiceId) {
+        // If a matching product is found, return the product
+        return inventory[i];
+      }
+    }
+    // Otherwise return null
+    return null;
+  }
+  
   
 
 
