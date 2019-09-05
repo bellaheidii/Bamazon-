@@ -13,3 +13,8 @@ CREATE TABLE products(
    
 )
 SELECT * FROM  products; 
+
+
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("Uncharted 4", "Video Games", 49.95, 150),
+  ("DOOM", "Video Games", 59.99, 200),
