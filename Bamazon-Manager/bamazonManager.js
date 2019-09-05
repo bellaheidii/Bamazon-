@@ -74,6 +74,38 @@ function loadLowInventory() {
       loadManagerMenu();
     });
   }
+  // Prompt the manager for a product to replenish
+function addToInventory(inventory) {
+    console.table(inventory);
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "choice",
+          message: "What is the ID of the item you would you like add to?",
+          validate: function(val) {
+            return !isNaN(val);
+          }
+        }
+      ])
+      .then(function(val) {
+        var choiceId = parseInt(val.choice);
+        var product = checkInventory(choiceId, inventory);
+  
+        // If a product can be found with the chose id...
+        if (product) {
+          // Pass the chosen product to promptCustomerForQuantity
+          promptManagerForQuantity(product);
+        }
+        else {
+          // Otherwise let the user know and re-load the manager menu
+          console.log("\nThat item is not in the inventory.");
+          loadManagerMenu();
+        }
+      });
+  }
+  
+  
   
   
   
