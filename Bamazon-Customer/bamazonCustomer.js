@@ -85,4 +85,22 @@ function promptCustomerForQuantity(product) {
           }
         }
       ])
+      .then(function(val) {
+        // Check if the user wants to quit the program
+        checkIfShouldExit(val.quantity);
+        var quantity = parseInt(val.quantity);
+  
+        // If there isn't enough of the chosen product and quantity, let the user know and re-run loadProducts
+        if (quantity > product.stock_quantity) {
+          console.log("\nInsufficient quantity!");
+          loadProducts();
+        }
+        else {
+          // Otherwise run makePurchase, give it the product information and desired quantity to purchase
+          makePurchase(product, quantity);
+        }
+      });
+  }
+  
+  
   
