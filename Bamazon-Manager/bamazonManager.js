@@ -182,7 +182,23 @@ function addNewProduct(val) {
       }
     );
   }
+
+  // Take an array of product objects, return an array of their unique departments
+function getDepartments(products) {
+    var departments = [];
+    for (var i = 0; i < products.length; i++) {
+        if (departments.indexOf(products[i].department_name) === -1) {
+            departments.push(products[i].department_name);
+        }
+    }
+    return departments;
+  }
   
+
+
+
+
+
   
   
   
