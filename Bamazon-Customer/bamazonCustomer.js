@@ -16,3 +16,11 @@ password: "password",
 database: "bamazon",
 
 });
+
+//connection with the server and loads product data upon successful connection 
+connection.connect(function(err) {
+    if(err) {
+        console.error("error connecting: " + err.stack); 
+    }
+    loadProducts();
+})
