@@ -24,5 +24,6 @@ VALUES ("Uncharted 4", "Video Games", 49.95, 150),
     ("Survival Towel", "Necessities", 42.42, 42),
   ("Bill and Ted's Excellent Adventure", "Films", 15.00, 25),
   ("Mad Max: Fury Road", "Films", 25.50, 57),
-
+ ("Monopoly", "Board Games", 30.50, 35),
+  ("Yahtzee", "Board Games", 19.95, 23);
 
