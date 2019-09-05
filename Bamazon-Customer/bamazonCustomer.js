@@ -24,3 +24,15 @@ connection.connect(function(err) {
     }
     loadProducts();
 })
+
+//loads products from database and prints results 
+function loadProducts(){
+    connection.query("SELECT * FROM products", function(err, res) {
+        if (err) throw err;
+        //Draw the table in the terminal using response 
+        console.table(res);
+
+        //then prompt the customer for thier choice of product, pass all the products to promptCustomerForItem
+        promptCustomeForItem(res);
+    });
+}
