@@ -17,3 +17,10 @@ var connection = mysql.createConnection({
   password: "password",
   database: "bamazon"
 });
+// Creates the connection with the server and loads the manager menu upon a successful connection
+connection.connect(function(err) {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+  }
+  loadManagerMenu();
+});
