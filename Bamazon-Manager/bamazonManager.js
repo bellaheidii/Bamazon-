@@ -169,6 +169,19 @@ function promptManagerForNewProduct(products) {
       ])
       .then(addNewProduct);
   }
+  // Adds a new product to the database, loads the manager menu
+function addNewProduct(val) {
+    connection.query(
+      "INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES (?, ?, ?, ?)",
+      [val.product_name, val.department_name, val.price, val.quantity],
+      function(err, res) {
+        if (err) throw err;
+        console.log(val.product_name + " ADDED TO BAMAZON!\n");
+        // When done, re run loadManagerMenu, effectively restarting our app
+        loadManagerMenu();
+      }
+    );
+  }
   
   
   
