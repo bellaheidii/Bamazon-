@@ -121,4 +121,17 @@ function checkInventory(choiceId, inventory) {
         // If a matching product is found, return the product
         return inventory[i];
   
-  
+    }
+}
+// Otherwise return null
+return null;
+}
+
+// Check to see if the user wants to quit the program
+function checkIfShouldExit(choice) {
+if (choice.toLowerCase() === "q") {
+  // Log a message and exit the current node process
+  console.log("Goodbye!");
+  process.exit(0);
+}
+}
